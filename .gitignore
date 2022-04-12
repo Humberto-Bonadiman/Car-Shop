@@ -1,4 +1,9 @@
 node_modules
+<<<<<<< HEAD
 
 # misc
 .env
+=======
+coverage
+.nyc_output
+>>>>>>> 843848d1b56488c356b8cf9a7fa104ddbd93db73
