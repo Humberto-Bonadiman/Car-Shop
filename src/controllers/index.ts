@@ -12,6 +12,7 @@ export interface RequestWithBody<T> extends Request {
 enum ControllerErrors {
   internal = 'Internal Server Error',
   notFound = 'Object not found',
+  characters = 'Id must have 24 hexadecimal characters',
   requiredId = 'Id is required',
   badRequest = 'Bad request',
 }
@@ -36,7 +37,7 @@ abstract class Controller<T> {
       const objs = await this.service.read();
       return res.json(objs);
     } catch (err) {
-      return res.status(500).json({ error: this.errors.internal });
+      return res.status(400).json({ error: this.errors.internal });
     }
   };
 

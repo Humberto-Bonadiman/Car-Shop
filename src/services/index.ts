@@ -20,7 +20,7 @@ abstract class Service<T> {
     return this.model.readOne(id);
   }
 
-  public async update(id: string, obj: T): Promise<T | null> {
+  public async update(id: string, obj: T): Promise<T | null | ServiceError> {
     return this.model.update(id, obj);
   }
 
