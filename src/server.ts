@@ -1,17 +1,15 @@
-// import CustomRouter from './routes/Router';
-// import App from './app';
+import CarsController from './controllers/CarsController';
+import { Car } from './interfaces/CarInterface';
+import CustomRouter from './routes/Router';
+import App from './app';
 
-// import exampleController from './controllers/controller-example';
+const server = new App();
 
-// import { example } from './interfaces/ExampleInterface';
+const carsController = new CarsController();
 
-// const server = new App();
+const carRouter = new CustomRouter<Car>();
+carRouter.addRoute(carsController);
 
-// const exampleController = new exampleController();
+server.addRouter(carRouter.router);
 
-// const exampleRouter = new CustomRouter<Car>();
-// exampleRouter.addRoute(exampleController);
-
-// server.addRouter(exampleRouter.router);
-
-// export default server;
+export default server;
