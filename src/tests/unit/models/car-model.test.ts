@@ -39,7 +39,7 @@ describe('Insere um item no BD', () => {
     it('retorna um objeto com os dados corretos', async () => {
       const response = await carTest.create(payload);
 
-      expect(response).to.be.a('object');
+      expect(response).to.be.an('object');
       expect(response).to.have.a.property('_id');
       expect(response).to.have.a.property('model');
       expect(response).to.have.a.property('year');
@@ -82,9 +82,62 @@ describe('Busca apenas um produto no BD por seu Id', () => {
   after(async () => {
     (carTest.model.findOne as sinon.SinonStub).restore();
   });
-  it('retorna um objeto', async () => {
+  it('retorna um objeto contendo as seguintes propriedades', async () => {
     const response = await carTest.readOne('6255e257bf956413e5d5200b');
 
     expect(response).to.be.an('object');
+    expect(response).to.include.all.keys(
+      '_id', 'model', 'year', 'color', 'buyValue', 'doorsQty', 'seatsQty'
+    );
   });
+});
+
+describe('Atualiza um produto no banco de dados através do id', () => {
+  const updateCar = {
+    _id: '6255e257bf956413e5d5200b',
+    model: 'Honda',
+    year: 2013,
+    color: 'white',
+    status: false,
+    buyValue: 29000,
+    doorsQty: 4,
+    seatsQty: 5,
+  };
+  before(async () => {
+    sinon.stub(carTest.model, 'findByIdAndUpdate').resolves(addCar as (CarDocument & {_id: string }));
+  });
+
+  after(async () => {
+    (carTest.model.findByIdAndUpdate as sinon.SinonStub).restore();
+  });
+
+  it('retorna um objeto', async () => {
+    const response = await carTest.update('6255e257bf956413e5d5200b', updateCar);
+
+    expect(response).to.be.an('object');
+    expect(response).to.include.all.keys(
+      '_id', 'model', 'year', 'color', 'buyValue', 'doorsQty', 'seatsQty'
+    );
+  });
+});
+
+describe('Deleta um item no banco de dados através do id', () => {
+  describe('quando o item existe no banco de dados', () => {
+    before(async () => {
+      sinon.stub(carTest.model, 'findOneAndDelete').resolves(addCar as (CarDocument & {_id: string }));
+    });
+
+    after(async () => {
+      (carTest.model.findOneAndDelete as sinon.SinonStub).restore();
+    });
+
+    it('retorna um objeto', async () => {
+      const response = await carTest.delete('6255e257bf956413e5d5200b');
+  
+      expect(response).to.be.an('object');
+      expect(response).to.include.all.keys(
+        '_id', 'model', 'year', 'color', 'buyValue', 'doorsQty', 'seatsQty'
+      );
+    });
+  })
 });
