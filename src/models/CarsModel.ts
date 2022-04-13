@@ -8,7 +8,7 @@ const carSchema = new Schema<CarDocument>({
   model: String,
   year: Number,
   color: String,
-  status: { type: Boolean, required: true },
+  status: { type: Boolean, required: false },
   buyValue: Number,
   doorsQty: Number,
   seatsQty: Number,
