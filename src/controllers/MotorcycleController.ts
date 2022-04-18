@@ -26,6 +26,9 @@ export default class MotorcycleController extends Controller<Motorcycle> {
       if (!motorcycle) {
         return res.status(500).json({ error: this.errors.internal });
       }
+      if ('error' in motorcycle) {
+        return res.status(400).json(motorcycle);
+      }
       return res.status(201).json(motorcycle);
     } catch (error) {
       return res.status(400).json({ error: this.errors.internal });
