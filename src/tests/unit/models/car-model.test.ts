@@ -1,6 +1,5 @@
 import * as sinon from 'sinon';
 import { expect } from 'chai';
-import { Types } from 'mongoose';
 import CarModel, { CarDocument } from '../../../models/CarsModel';
 import getAllCars from '../../mockTests/carMock';
 
