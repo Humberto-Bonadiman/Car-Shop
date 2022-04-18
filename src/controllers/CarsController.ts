@@ -7,7 +7,7 @@ export default class CarsController extends Controller<Car> {
   private $route: string;
 
   constructor(
-    service = new CarService(),
+    public service = new CarService(),
     route = '/cars',
   ) {
     super(service);
@@ -50,6 +50,18 @@ export default class CarsController extends Controller<Car> {
     }
   };
 
+  read = async (
+    _req: Request,
+    res: Response<Car[] | ResponseError | []>,
+  ): Promise<typeof res> => {
+    try {
+      const car = await this.service.read();
+      return res.status(200).json(car);
+    } catch (error) {
+      return res.status(400).json({ error: this.errors.characters });
+    }
+  };
+
   update = async (
     req: Request<{ id: string; }>,
     res: Response<Car | ResponseError>,
@@ -70,13 +82,13 @@ export default class CarsController extends Controller<Car> {
 
   delete = async (
     req: Request<{ id: string; }>,
-    res: Response<Car | ResponseError>,
+    res: Response<Car | null | ResponseError>,
   ): Promise<typeof res> => {
     const { id } = req.params;
     try {
       const car = await this.service.delete(id);
       return car
-        ? res.status(204).json(car)
+        ? res.status(204).json()
         : res.status(404).json({ error: this.errors.notFound });
     } catch (error) {
       return res.status(500).json({ error: this.errors.internal });

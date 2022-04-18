@@ -20,7 +20,7 @@ enum ControllerErrors {
 abstract class Controller<T> {
   abstract route: string;
 
-  protected errors = ControllerErrors;
+  public errors = ControllerErrors;
 
   constructor(protected service: Service<T>) { }
 
