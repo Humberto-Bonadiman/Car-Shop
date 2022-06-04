@@ -25,13 +25,12 @@ Para este projeto, eu apliquei os princípios de `POO` para a contrução de uma
 
 Após cada um dos passos, haverá um exemplo do comando a ser digitado para fazer o que está sendo pedido, caso tenha dificuldades, mande mensagem para o meu e-mail _humberto_bonadiman@hotmail.com_.
 
-1. Entre no diretório que acabou de criar e depois clone o projeto:
+1. Abra o terminal e realize o clone do projeto:
 ```javascript
-  cd projetos-humberto
   git clone git@github.com:Humberto-Bonadiman/Car-Shop.git
 ```
 
-2. Acesse o diretório do projeto e depois utilize o comando **npm install** (opcional) para instalar todas as dependências necessárias:
+2. Acesse o diretório do projeto e depois utilize o comando **npm install** para instalar todas as dependências necessárias:
 ```javascript
   cd Car-Shop
   npm install
