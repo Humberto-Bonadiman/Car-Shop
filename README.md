@@ -15,7 +15,7 @@ Neste projeto, eu pude de:
 ---
 
 
-## O que deverá foi desenvolvido
+## O que foi desenvolvido
 
 Para este projeto, eu apliquei os princípios de `POO` para a contrução de uma API com `CRUD` para gerenciar uma concessionária de veículos utilizando o banco de dados `MongoDB`.
 
